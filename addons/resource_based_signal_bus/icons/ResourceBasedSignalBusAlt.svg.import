@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cl4yg33utlnlg"
-path="res://.godot/imported/ResourceBasedSignalBus.svg-84169338f026150a1eefdf1914e071c9.ctex"
+uid="uid://8es7j2yg5jqw"
+path="res://.godot/imported/ResourceBasedSignalBusAlt.svg-3b554b9d8041e9509ee0b1d999d50a70.ctex"
 metadata={
 "has_editor_variant": true,
 "vram_texture": false
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://addons/resource_based_signal_bus/icons/ResourceBasedSignalBus.svg"
-dest_files=["res://.godot/imported/ResourceBasedSignalBus.svg-84169338f026150a1eefdf1914e071c9.ctex"]
+source_file="res://addons/resource_based_signal_bus/icons/ResourceBasedSignalBusAlt.svg"
+dest_files=["res://.godot/imported/ResourceBasedSignalBusAlt.svg-3b554b9d8041e9509ee0b1d999d50a70.ctex"]
 
 [params]
 
