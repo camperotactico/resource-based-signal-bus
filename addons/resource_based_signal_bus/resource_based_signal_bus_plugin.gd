@@ -4,14 +4,14 @@ extends EditorPlugin
 const SIGNAL_BUS_LISTENER: String = "SignalBusListener"
 const SignalBusListenerInspectorTool = preload("uid://bgyam130l63xn")
 const SignalBusListener = preload("uid://da6dhfdepfkku")
-const ICON = preload("uid://dkfpyxcv5des0")
+const SIGNAL_BUS_LISTENER_ICON = preload("uid://dkfpyxcv5des0")
 
 var signal_bus_listener_inspector_tool: SignalBusListenerInspectorTool
 
 func _enter_tree() -> void:
 	signal_bus_listener_inspector_tool = SignalBusListenerInspectorTool.new()
 	add_inspector_plugin(signal_bus_listener_inspector_tool)
-	add_custom_type(SIGNAL_BUS_LISTENER,"Node",SignalBusListener,ICON)
+	add_custom_type(SIGNAL_BUS_LISTENER,"Node",SignalBusListener,SIGNAL_BUS_LISTENER_ICON)
 
 
 func _enable_plugin() -> void:

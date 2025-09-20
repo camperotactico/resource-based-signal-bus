@@ -1,3 +1,4 @@
+@icon("res://addons/resource_based_signal_bus/icons/ResourceBasedSignalBus.svg")
 @tool
 @abstract class_name SignalBus extends Resource
 
