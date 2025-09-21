@@ -25,11 +25,18 @@ script = ExtResource("1_bl13t")
 void_signal_bus = ExtResource("2_iyx0m")
 
 [node name="Message" parent="." instance=ExtResource("3_iyx0m")]
-layout_mode = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 538.0
-offset_bottom = 67.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -269.0
+offset_top = -33.5
+offset_right = 269.0
+offset_bottom = 33.5
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="OnShowMessageButtonPressed1" type="Node" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("1_37kl0")

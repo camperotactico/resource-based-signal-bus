@@ -15,6 +15,9 @@ Some of the benefits of using them instead of regular signals.
 - ✅ Use signals without coupling the emitter and receiver nodes.
 
 ## 🧰 Features
+- Includes a script [Template](./script_templates/SignalBus/custom_signal_bus_template.gd) to ease the process of creating custom signal buses.
+- Comes with a new node named `SignalBusListener`, a tool that connects a `SignalBus` resource to a method of a `Node` in the scene. This allows designers and artists to create responses to signals from the inspector.
+
 
 ## 🐛 Limitations, known issues, bugs
 
