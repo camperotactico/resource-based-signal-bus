@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://cshykha3al4u3"]
+
+[ext_resource type="Script" uid="uid://da6dhfdepfkku" path="res://addons/resource_based_signal_bus/scripts/signal_bus_listener/signal_bus_listener.gd" id="1_37kl0"]
+[ext_resource type="Script" uid="uid://diyiajwdummbc" path="res://scripts/void_test_button.gd" id="1_bl13t"]
+[ext_resource type="Resource" uid="uid://kpgffatfdypn" path="res://resources/signal_buses/show_message_button_pressed.tres" id="2_iyx0m"]
+[ext_resource type="PackedScene" uid="uid://3dyvgcwdspyd" path="res://scenes/message.tscn" id="3_iyx0m"]
+
+[node name="Test" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ShowMessageButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 78.0
+offset_right = 205.0
+offset_bottom = 109.0
+theme_override_font_sizes/font_size = 48
+text = "Show Message"
+script = ExtResource("1_bl13t")
+void_signal_bus = ExtResource("2_iyx0m")
+
+[node name="Message" parent="." instance=ExtResource("3_iyx0m")]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 538.0
+offset_bottom = 67.0
+
+[node name="OnShowMessageButtonPressed1" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("1_37kl0")
+signal_bus = ExtResource("2_iyx0m")
+target = NodePath("../Message")
+callable_string_name = &"show"
+metadata/_custom_type_script = "uid://da6dhfdepfkku"
+
+[node name="OnShowMessageButtonPressed2" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("1_37kl0")
+signal_bus = ExtResource("2_iyx0m")
+target = NodePath("../Message")
+extra_args = [Color(9.481758e-06, 0.6659075, 5.7756904e-07, 1)]
+callable_string_name = &"set_modulate"
+metadata/_custom_type_script = "uid://da6dhfdepfkku"

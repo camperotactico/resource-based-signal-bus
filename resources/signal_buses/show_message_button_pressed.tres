@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="VoidSignalBus" load_steps=2 format=3 uid="uid://kpgffatfdypn"]
+
+[ext_resource type="Script" uid="uid://do04mvay8r5lf" path="res://addons/resource_based_signal_bus/scripts/signal_buses/void_signal_bus.gd" id="1_h0b5j"]
+
+[resource]
+script = ExtResource("1_h0b5j")
+metadata/_custom_type_script = "uid://do04mvay8r5lf"

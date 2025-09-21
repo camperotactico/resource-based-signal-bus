@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://3dyvgcwdspyd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ij1v8"]
+font_size = 48
+
+[node name="Message" type="Label"]
+visible = false
+offset_left = 376.0
+offset_top = 289.0
+offset_right = 914.0
+offset_bottom = 356.0
+text = "My super cool message"
+label_settings = SubResource("LabelSettings_ij1v8")
