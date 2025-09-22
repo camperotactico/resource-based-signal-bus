@@ -29,7 +29,6 @@ Some of the benefits of using this asset instead of regular signals or a singlet
 - The asset also features a new node named `SignalBusListener`. It connects a `SignalBus` resource to a method of a `Node` in the scene. This allows designers and artists to create responses to signals from the inspector.
 
 ## ⬇️ Installation
-
 1. Download the asset from the `AssetLib` tab in the Godot Editor.
 
 2. Enable the plugin `Project` -> `Project Settings` -> `Plugins` -> `Resource Based Signal Bus`
