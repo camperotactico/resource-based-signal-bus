@@ -1,4 +1,4 @@
-> ⚠️ This document (and asset) is still under construction.
+> ⚠️ This asset and document are still under construction.
 
 # <img src="./addons/resource_based_signal_bus/icons/ResourceBasedSignalBus.svg" width="32" height="32"> Resource Based Signal Bus
 
@@ -22,16 +22,28 @@ Some of the benefits of using this asset instead of regular signals or a singlet
 
 
 ## 🧰 Features
-- Comes with typed implementations for the most popular variant types in _Godot_: `VoidSignalBus`, `IntSignalBus`, `FloatSignalBus`, `BoolSignalBus`, `Vector2SignalBus`, `Vector3SignalBus`, `ArraySignalBus`, `DictionarySignalBus`...
-- Includes a [Script Template](./script_templates/SignalBus/custom_signal_bus_template.gd) to ease the process of creating custom signal buses. 
-- Features a new node named `SignalBusListener`. It connects a `SignalBus` resource to a method of a `Node` in the scene. This allows designers and artists to create responses to signals from the inspector.
+- This addon comes with typed implementations for signals that take a single argument. These are based on common variant types in _Godot_: `VoidSignalBus`, `IntSignalBus`, `Vector3SignalBus`, `ArraySignalBus`, `NodeSignalBus`, ... 
 
+> Custom signal buses can be created by extending the `SignalBus` class on a new script. The asset includes a [Script Template](./script_templates/SignalBus/custom_signal_bus_template.gd) to ease the process. **This allow signals using custom node types or multiple typed parameters** (e.g. _PlayerCharacterSignalBus_, _AduioClipFloatSignalBus_, _FloatFloatFloatSignalBus_...)
 
-## 🐛 Limitations, known issues, bugs
+- The asset also features a new node named `SignalBusListener`. It connects a `SignalBus` resource to a method of a `Node` in the scene. This allows designers and artists to create responses to signals from the inspector.
 
 ## ⬇️ Installation
 
 1. Download the asset from the `AssetLib` tab in the Godot Editor.
+
 2. Enable the plugin `Project` -> `Project Settings` -> `Plugins` -> `Resource Based Signal Bus`
 
 ## 📖 Usage
+
+### Creating and using `SignalBus` resources.
+TODO
+### Using the `SignalBusListener` node.
+TODO
+### Creating Custom Signal Buses.
+TODO
+
+## 🐛 Limitations, known issues, bugs
+Perhaps the biggest limitation of this project is the amount of work and repeated code extending `SignalBus` takes. This is because I wanted each implemenentation of it to be as typed as possible. `GDScript` has no support for generic types, so I had to make some compromises when designing the structure of the asset files.
+
+> I moved forward with this decision anyway because of the benefits of typed classes: error linting in the editor and the filtering of compatible methods when using the `SignalBusListener` node.
