@@ -12,7 +12,6 @@ config_version=5
 
 config/name="Resource Based Signal Bus"
 config/description="A Godot asset that implements \"Signal buses\" using Resources. These offer increased modularity and decoupling than regular signals. The asset includes a listener node that allows to put together responses to signals right from the inspector."
-run/main_scene="uid://cshykha3al4u3"
 config/features=PackedStringArray("4.5", "Mobile")
 config/icon="uid://cl4yg33utlnlg"
 

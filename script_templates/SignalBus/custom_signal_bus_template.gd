@@ -1,5 +1,5 @@
 # meta-name: Custom Signal Bus
-# meta-description: Template to create a new [code]SignalBus[/code] type.
+# meta-description: Template to create a new SignalBus type.
 # meta-default: true
 # meta-space-indent: 4
 @tool
