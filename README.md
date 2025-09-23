@@ -67,7 +67,7 @@ Some of the benefits of using this asset instead of regular signals or a singlet
 ![A screenshot of the Godot editor showing the custom `SignalBus` class after the placeholders have been replaced with the desired types.](./screenshots/custom_signal_bus_editor_no_errors.png)
 > A screenshot of the Godot editor showing the custom `SignalBus` class after the placeholders have been replaced with the desired types.
 
-3- Now, to create and use the new _<img src="./icons/ResourceBasedSignalBus.svg" width="16" height="16"> SignalBus_ type, simply follow [the steps above](#creating-and-using-signalbus-resources).
+3- Now, to create and use the new _<img src="./icons/ResourceBasedSignalBus.svg" width="16" height="16"> SignalBus_ type, simply follow [the steps above](#creating-and-using--signalbus-resources).
 
 ## 🐛 Limitations, known issues, bugs
 Perhaps the biggest limitation of this project is the amount of work and repeated coding extending the `SignalBus` class takes. This is because I wanted each implemenentation of it to be as typed as possible. `GDScript` has no support for generic types, so I had to make some compromises when designing the structure of the asset files.
