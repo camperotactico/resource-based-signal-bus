@@ -1,0 +1,81 @@
+[gd_scene load_steps=3 format=3 uid="uid://of5af3ng1gf0"]
+
+[ext_resource type="Script" uid="uid://gf5uvxa472ar" path="res://addons/resource_based_signal_bus/scripts/custom_signal_bus_script_creator/custom_signal_bus_script_creator.gd" id="1_dqea1"]
+[ext_resource type="Texture2D" uid="uid://cl4yg33utlnlg" path="res://addons/resource_based_signal_bus/icons/ResourceBasedSignalBus.svg" id="1_qvtpa"]
+
+[node name="CustomSignalBusScriptCreator" type="Control" node_paths=PackedStringArray("class_name_line_edit", "save_path_line_edit")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dqea1")
+class_name_line_edit = NodePath("VBoxContainer/ClassNameHBoxContainer/ClassNameLineEdit")
+save_path_line_edit = NodePath("VBoxContainer/SavePathHBoxContainer/SavePathLineEdit")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Create a custom [i]SignalBus[/i] type:"
+fit_content = true
+scroll_active = false
+
+[node name="ClassNameHBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ClassNameRichTextLabel" type="Label" parent="VBoxContainer/ClassNameHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Class Name:"
+
+[node name="ClassNameLineEdit" type="LineEdit" parent="VBoxContainer/ClassNameHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "MySignalBus"
+placeholder_text = "MySignalBus"
+
+[node name="FilenamePreviewRichTextLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "my_signal_bus.gd"
+horizontal_alignment = 2
+
+[node name="SavePathHBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="SavePathRichTextLabel" type="Label" parent="VBoxContainer/SavePathHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Save Path:"
+
+[node name="SavePathLineEdit" type="LineEdit" parent="VBoxContainer/SavePathHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "res://scripts/custom_signal_buses"
+placeholder_text = "res://scripts/custom_signal_buses"
+
+[node name="CreateScriptButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Create Script"
+icon = ExtResource("1_qvtpa")
+
+[node name="ErrorMessageDisplay" type="RichTextLabel" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+bbcode_enabled = true
+text = "A file with the same name already exists on that path"
+fit_content = true
+scroll_active = false
+
+[connection signal="error_encountered" from="." to="VBoxContainer/ErrorMessageDisplay" method="set_text"]
+[connection signal="preview_filename_changed" from="." to="VBoxContainer/FilenamePreviewRichTextLabel" method="set_text"]
+[connection signal="script_creation_disabled" from="." to="VBoxContainer/ErrorMessageDisplay" method="set_visible"]
+[connection signal="pressed" from="VBoxContainer/CreateScriptButton" to="." method="_on_create_script_button_pressed"]
