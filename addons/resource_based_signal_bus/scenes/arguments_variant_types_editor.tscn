@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://brinlab3uvxdl"]
+
+[ext_resource type="Script" uid="uid://b1ywkh5p1hyiq" path="res://addons/resource_based_signal_bus/scripts/custom_signal_bus_script_creator/arguments_variant_types_editor.gd" id="1_q8a77"]
+[ext_resource type="PackedScene" uid="uid://tj2q2dx2ks1f" path="res://addons/resource_based_signal_bus/scenes/argument_type_control.tscn" id="2_ol8l2"]
+
+[node name="ArgumentsVariantTypesEditor" type="VBoxContainer"]
+script = ExtResource("1_q8a77")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Number of Arguments:"
+
+[node name="SpinBox" type="SpinBox" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="EmptySpace" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ArgumentTypeControl" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_ol8l2")]
+layout_mode = 2
+
+[node name="ArgumentTypeControl2" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_ol8l2")]
+layout_mode = 2
+
+[node name="ArgumentTypeControl3" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_ol8l2")]
+layout_mode = 2

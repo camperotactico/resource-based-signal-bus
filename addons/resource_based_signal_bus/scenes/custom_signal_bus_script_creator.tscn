@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://of5af3ng1gf0"]
+[gd_scene load_steps=4 format=3 uid="uid://of5af3ng1gf0"]
 
 [ext_resource type="Script" uid="uid://gf5uvxa472ar" path="res://addons/resource_based_signal_bus/scripts/custom_signal_bus_script_creator/custom_signal_bus_script_creator.gd" id="1_dqea1"]
 [ext_resource type="Texture2D" uid="uid://cl4yg33utlnlg" path="res://addons/resource_based_signal_bus/icons/ResourceBasedSignalBus.svg" id="1_qvtpa"]
+[ext_resource type="PackedScene" uid="uid://brinlab3uvxdl" path="res://addons/resource_based_signal_bus/scenes/arguments_variant_types_editor.tscn" id="2_185c3"]
 
-[node name="CustomSignalBusScriptCreator" type="Control" node_paths=PackedStringArray("class_name_line_edit", "save_path_line_edit")]
+[node name="CustomSignalBusScriptCreator" type="Control" node_paths=PackedStringArray("save_path_line_edit")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -11,7 +12,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dqea1")
-class_name_line_edit = NodePath("VBoxContainer/ClassNameHBoxContainer/ClassNameLineEdit")
 save_path_line_edit = NodePath("VBoxContainer/SavePathHBoxContainer/SavePathLineEdit")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
@@ -22,38 +22,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+[node name="SavePathRichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
 bbcode_enabled = true
-text = "Create a custom [i]SignalBus[/i] type:"
+text = "Save Path"
 fit_content = true
 scroll_active = false
-
-[node name="ClassNameHBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="ClassNameRichTextLabel" type="Label" parent="VBoxContainer/ClassNameHBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Class Name:"
-
-[node name="ClassNameLineEdit" type="LineEdit" parent="VBoxContainer/ClassNameHBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "MySignalBus"
-placeholder_text = "MySignalBus"
-
-[node name="FilenamePreviewRichTextLabel" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-text = "my_signal_bus.gd"
-horizontal_alignment = 2
+horizontal_alignment = 1
 
 [node name="SavePathHBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="SavePathRichTextLabel" type="Label" parent="VBoxContainer/SavePathHBoxContainer"]
+[node name="SavePathTextLabel" type="Label" parent="VBoxContainer/SavePathHBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
 text = "Save Path:"
 
 [node name="SavePathLineEdit" type="LineEdit" parent="VBoxContainer/SavePathHBoxContainer"]
@@ -61,6 +42,71 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "res://scripts/custom_signal_buses"
 placeholder_text = "res://scripts/custom_signal_buses"
+
+[node name="EmptySpace1" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ArgumentsRichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Arguments"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="ArgumentsVariantTypesEditor" parent="VBoxContainer" instance=ExtResource("2_185c3")]
+layout_mode = 2
+
+[node name="EmptySpace2" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="PreviewRichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Custom SignalBus Preview"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="ClassNamePreviewHBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ClassNamePreviewTextLabel" type="Label" parent="VBoxContainer/ClassNamePreviewHBoxContainer"]
+layout_mode = 2
+text = "Output Class Name:"
+
+[node name="ClassNamePreviewRichTextLabel" type="RichTextLabel" parent="VBoxContainer/ClassNamePreviewHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[i]FloatIntDictionaryOfStringColorSignalBus[/i]"
+horizontal_alignment = 2
+
+[node name="FilenamePreviewHBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="FilenamePreviewTextLabel" type="Label" parent="VBoxContainer/FilenamePreviewHBoxContainer"]
+layout_mode = 2
+text = "Output File:"
+
+[node name="FilenamePreviewRichTextLabel" type="RichTextLabel" parent="VBoxContainer/FilenamePreviewHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[i]float_int_dictionary_of_string_color_signal_bus[/i].gd"
+horizontal_alignment = 2
+
+[node name="EmptySpace3" type="Control" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
 
 [node name="CreateScriptButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -71,11 +117,12 @@ icon = ExtResource("1_qvtpa")
 visible = false
 layout_mode = 2
 bbcode_enabled = true
-text = "A file with the same name already exists on that path"
+text = "[color=red]Save Path cannot be empty[/color]"
 fit_content = true
 scroll_active = false
 
 [connection signal="error_encountered" from="." to="VBoxContainer/ErrorMessageDisplay" method="set_text"]
-[connection signal="preview_filename_changed" from="." to="VBoxContainer/FilenamePreviewRichTextLabel" method="set_text"]
+[connection signal="preview_filename_changed" from="." to="VBoxContainer/FilenamePreviewHBoxContainer/FilenamePreviewRichTextLabel" method="set_text"]
+[connection signal="script_creation_disabled" from="." to="VBoxContainer/CreateScriptButton" method="set_disabled"]
 [connection signal="script_creation_disabled" from="." to="VBoxContainer/ErrorMessageDisplay" method="set_visible"]
 [connection signal="pressed" from="VBoxContainer/CreateScriptButton" to="." method="_on_create_script_button_pressed"]

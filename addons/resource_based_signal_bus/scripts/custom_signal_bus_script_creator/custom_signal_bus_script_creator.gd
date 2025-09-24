@@ -8,35 +8,46 @@ const CHARACTERS_NOT_ALLOWED_IN_PATH = ':\\?*"|%<>'
 const ABSOLUTE_RES_PATH: String = "res://"
 const GD_EXTENSION: String = ".gd"
 
+@export var save_path_line_edit: LineEdit
+
+
+# Arguments
+@export var _variant_type_array: Array[Variant.Type]
+
+
+# Filename
+const FILENAME_PREVIEW_TEMPLATE: String = "[i]%s[/i]"
+
 signal preview_filename_changed(new_preview_filename: String)
 signal error_encountered(error_message: String)
 signal script_creation_disabled(is_disabled: bool)
 
 
-@export var class_name_line_edit: LineEdit
-@export var save_path_line_edit: LineEdit
 
-var _class_name: String = ""
+
+
 var _save_path: String = ""
+var _class_name: String = "MyCustomClass"
 
 var _file_system: EditorFileSystem
 
 func _enter_tree() -> void:
 	_file_system = EditorInterface.get_resource_filesystem()
 	_file_system.filesystem_changed.connect(_on_filesystem_changed)
-	class_name_line_edit.text_changed.connect(_on_class_name_line_edit_text_changed)
 	save_path_line_edit.text_changed.connect(_on_save_path_line_edit_text_changed)
 	
-	_on_class_name_line_edit_text_changed(class_name_line_edit.text)
 	_on_save_path_line_edit_text_changed(save_path_line_edit.text)
 	_validate_parameters()
 
 func _exit_tree() -> void:
-	class_name_line_edit.text_changed.disconnect(_on_class_name_line_edit_text_changed)
 	save_path_line_edit.text_changed.disconnect(_on_save_path_line_edit_text_changed)
 	
 	_file_system.filesystem_changed.disconnect(_on_filesystem_changed)
 	_file_system = null
+	
+func _ready() -> void:
+	#preview_filename_changed.emit(FILENAME_PREVIEW_TEMPLATE % _class_name.to_snake_case()+GD_EXTENSION)
+	pass
 
 func _on_filesystem_changed() -> void:
 	_validate_parameters()
@@ -59,16 +70,10 @@ func save_script_to_file():
 	file.store_line("@tool")
 	file.store_line("extends SignalBus")
 	file.store_line("")
-	file.store_string("class_name %s" % _class_name)
 	file.close()
 	
 	# Refresh the FileSystem
 	_try_file_system_refresh()
-
-func _on_class_name_line_edit_text_changed(new_text: String) -> void:
-	_class_name = new_text
-	preview_filename_changed.emit(_class_name.to_snake_case()+GD_EXTENSION)
-	_validate_parameters()
 
 func _on_save_path_line_edit_text_changed(new_text: String) -> void:
 	_save_path = new_text

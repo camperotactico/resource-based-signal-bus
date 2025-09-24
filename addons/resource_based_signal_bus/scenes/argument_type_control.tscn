@@ -1,0 +1,64 @@
+[gd_scene load_steps=2 format=3 uid="uid://tj2q2dx2ks1f"]
+
+[ext_resource type="Script" uid="uid://vu2bcaof5eef" path="res://addons/resource_based_signal_bus/scripts/custom_signal_bus_script_creator/argument_type_control.gd" id="1_sk1q5"]
+
+[node name="ArgumentTypeControl" type="VBoxContainer" node_paths=PackedStringArray("variant_type_option_button", "object_details", "array_details", "dictionary_details")]
+script = ExtResource("1_sk1q5")
+variant_type_option_button = NodePath("VariantTypeHBoxContainer/VariantTypeOptionButton")
+object_details = NodePath("ObjectDetailsHBoxContainer")
+array_details = NodePath("ArrayDetailsHBoxContainer")
+dictionary_details = NodePath("DictionaryDetailsHBoxContainer")
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="VariantTypeHBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VariantTypeHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Variant Type:"
+
+[node name="VariantTypeOptionButton" type="OptionButton" parent="VariantTypeHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ObjectDetailsHBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ObjectClassLabel" type="Label" parent="ObjectDetailsHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "(Optional) Class Name:"
+
+[node name="ObjectClassLineEdit" type="LineEdit" parent="ObjectDetailsHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "CharacterBody3D"
+
+[node name="DictionaryDetailsHBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="KeyValuelabel" type="Label" parent="DictionaryDetailsHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "(Optional) Key,Value:"
+
+[node name="KeyValueLineEdit" type="LineEdit" parent="DictionaryDetailsHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "int,EnemyClass"
+
+[node name="ArrayDetailsHBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="KeyValuelabel" type="Label" parent="ArrayDetailsHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "(Optional) Array Type:"
+
+[node name="KeyValueLineEdit" type="LineEdit" parent="ArrayDetailsHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Vector3"
