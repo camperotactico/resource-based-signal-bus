@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnw0e7n6cp630"]
+
+[ext_resource type="Script" uid="uid://bw4rui0wvfwpg" path="res://addons/resource_based_signal_bus/scripts/custom_signal_bus_script_creator/save_path_editor.gd" id="1_eix3n"]
+
+[node name="SavePathEditor" type="VBoxContainer" node_paths=PackedStringArray("save_path_line_edit")]
+script = ExtResource("1_eix3n")
+save_path_line_edit = NodePath("SavePathHBoxContainer/SavePathLineEdit")
+
+[node name="SavePathRichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 2
+bbcode_enabled = true
+text = "Save Path"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="SavePathHBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="SavePathTextLabel" type="Label" parent="SavePathHBoxContainer"]
+layout_mode = 2
+text = "Save Path:"
+
+[node name="SavePathLineEdit" type="LineEdit" parent="SavePathHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "res://scripts/custom_signal_buses"
+placeholder_text = "res://scripts/custom_signal_buses"

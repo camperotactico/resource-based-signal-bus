@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://of5af3ng1gf0"]
+[gd_scene load_steps=7 format=3 uid="uid://of5af3ng1gf0"]
 
 [ext_resource type="Script" uid="uid://gf5uvxa472ar" path="res://addons/resource_based_signal_bus/scripts/custom_signal_bus_script_creator/custom_signal_bus_script_creator.gd" id="1_dqea1"]
 [ext_resource type="Texture2D" uid="uid://cl4yg33utlnlg" path="res://addons/resource_based_signal_bus/icons/ResourceBasedSignalBus.svg" id="1_qvtpa"]
 [ext_resource type="PackedScene" uid="uid://brinlab3uvxdl" path="res://addons/resource_based_signal_bus/scenes/arguments_variant_types_editor.tscn" id="2_185c3"]
+[ext_resource type="PackedScene" uid="uid://cnw0e7n6cp630" path="res://addons/resource_based_signal_bus/scenes/save_path_editor.tscn" id="2_i6g6p"]
 [ext_resource type="Script" uid="uid://u3ufpv7r5puc" path="res://addons/resource_based_signal_bus/scripts/custom_signal_bus_script_creator/parameters_validator.gd" id="4_x7jcq"]
+[ext_resource type="Script" uid="uid://w0073sydji0" path="res://addons/resource_based_signal_bus/scripts/custom_signal_bus_script_creator/utils/filesystem_scanner.gd" id="5_nbh7k"]
 
-[node name="CustomSignalBusScriptCreator" type="Control" node_paths=PackedStringArray("save_path_line_edit")]
+[node name="CustomSignalBusScriptCreator" type="Control" node_paths=PackedStringArray("parameters_validator")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,7 +15,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_dqea1")
-save_path_line_edit = NodePath("VBoxContainer/SavePathHBoxContainer/SavePathLineEdit")
+parameters_validator = NodePath("ParametersValidator")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -23,26 +25,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SavePathRichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
+[node name="SavePathEditor" parent="VBoxContainer" instance=ExtResource("2_i6g6p")]
 layout_mode = 2
-bbcode_enabled = true
-text = "Save Path"
-fit_content = true
-scroll_active = false
-horizontal_alignment = 1
-
-[node name="SavePathHBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="SavePathTextLabel" type="Label" parent="VBoxContainer/SavePathHBoxContainer"]
-layout_mode = 2
-text = "Save Path:"
-
-[node name="SavePathLineEdit" type="LineEdit" parent="VBoxContainer/SavePathHBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "res://scripts/custom_signal_buses"
-placeholder_text = "res://scripts/custom_signal_buses"
 
 [node name="EmptySpace1" type="Control" parent="VBoxContainer"]
 custom_minimum_size = Vector2(0, 32)
@@ -94,7 +78,7 @@ text = "Output File:"
 layout_mode = 2
 size_flags_horizontal = 3
 bbcode_enabled = true
-text = "[i]float_int_dictionary_of_string_color_signal_bus[/i].gd"
+text = "[i]res://scripts/custom_signal_buses/my_custom_class_signal_bus.gd[/i]"
 horizontal_alignment = 2
 
 [node name="EmptySpace3" type="Control" parent="VBoxContainer"]
@@ -117,8 +101,15 @@ scroll_active = false
 [node name="ParametersValidator" type="Node" parent="."]
 script = ExtResource("4_x7jcq")
 
-[connection signal="error_encountered" from="." to="VBoxContainer/ErrorMessageDisplay" method="set_text"]
-[connection signal="preview_filename_changed" from="." to="VBoxContainer/FilenamePreviewHBoxContainer/FilenamePreviewRichTextLabel" method="set_text"]
-[connection signal="script_creation_disabled" from="." to="VBoxContainer/CreateScriptButton" method="set_disabled"]
-[connection signal="script_creation_disabled" from="." to="VBoxContainer/ErrorMessageDisplay" method="set_visible"]
+[node name="FileSystemScanner" type="Node" parent="."]
+script = ExtResource("5_nbh7k")
+
+[connection signal="file_system_scan_requested" from="." to="FileSystemScanner" method="_on_custom_signal_bus_script_creator_file_system_scan_requested"]
+[connection signal="initial_save_path_requested" from="." to="VBoxContainer/SavePathEditor" method="_on_custom_signal_bus_script_creator_initial_save_path_requested"]
+[connection signal="save_path_changed" from="VBoxContainer/SavePathEditor" to="ParametersValidator" method="_on_save_path_editor_save_path_changed"]
 [connection signal="pressed" from="VBoxContainer/CreateScriptButton" to="." method="_on_create_script_button_pressed"]
+[connection signal="error_encountered" from="ParametersValidator" to="VBoxContainer/ErrorMessageDisplay" method="set_text"]
+[connection signal="preview_filename_changed" from="ParametersValidator" to="VBoxContainer/FilenamePreviewHBoxContainer/FilenamePreviewRichTextLabel" method="set_text"]
+[connection signal="script_creation_disabled" from="ParametersValidator" to="VBoxContainer/CreateScriptButton" method="set_disabled"]
+[connection signal="script_creation_disabled" from="ParametersValidator" to="VBoxContainer/ErrorMessageDisplay" method="set_visible"]
+[connection signal="file_system_changed" from="FileSystemScanner" to="ParametersValidator" method="_on_file_system_scanner_file_system_changed"]
