@@ -1,0 +1,221 @@
+[gd_scene load_steps=2 format=3 uid="uid://tj2q2dx2ks1f"]
+
+[ext_resource type="Script" uid="uid://vu2bcaof5eef" path="res://addons/resource_based_signal_bus/scripts/custom_signal_bus_script_creator/argument_variant_type_control.gd" id="1_f8j6k"]
+
+[node name="ArgumentTypeControl" type="VBoxContainer" node_paths=PackedStringArray("variant_type_option_button", "object_details", "array_details", "dictionary_details")]
+script = ExtResource("1_f8j6k")
+variant_type_option_button = NodePath("VariantTypeHBoxContainer/VariantTypeOptionButton")
+object_details = NodePath("ObjectDetailsHBoxContainer")
+array_details = NodePath("ArrayDetailsHBoxContainer")
+dictionary_details = NodePath("DictionaryDetailsHBoxContainer")
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="VariantTypeHBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VariantTypeHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Variant Type:"
+
+[node name="VariantTypeOptionButton" type="OptionButton" parent="VariantTypeHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 76
+popup/item_0/text = "TYPE_BOOL"
+popup/item_0/id = 1
+popup/item_1/text = "TYPE_INT"
+popup/item_1/id = 2
+popup/item_2/text = "TYPE_FLOAT"
+popup/item_2/id = 3
+popup/item_3/text = "TYPE_STRING"
+popup/item_3/id = 4
+popup/item_4/text = "TYPE_VECTOR2"
+popup/item_4/id = 5
+popup/item_5/text = "TYPE_VECTOR2I"
+popup/item_5/id = 6
+popup/item_6/text = "TYPE_RECT2"
+popup/item_6/id = 7
+popup/item_7/text = "TYPE_RECT2I"
+popup/item_7/id = 8
+popup/item_8/text = "TYPE_VECTOR3"
+popup/item_8/id = 9
+popup/item_9/text = "TYPE_VECTOR3I"
+popup/item_9/id = 10
+popup/item_10/text = "TYPE_TRANSFORM2D"
+popup/item_10/id = 11
+popup/item_11/text = "TYPE_VECTOR4"
+popup/item_11/id = 12
+popup/item_12/text = "TYPE_VECTOR4I"
+popup/item_12/id = 13
+popup/item_13/text = "TYPE_PLANE"
+popup/item_13/id = 14
+popup/item_14/text = "TYPE_QUATERNION"
+popup/item_14/id = 15
+popup/item_15/text = "TYPE_AABB"
+popup/item_15/id = 16
+popup/item_16/text = "TYPE_BASIS"
+popup/item_16/id = 17
+popup/item_17/text = "TYPE_TRANSFORM3D"
+popup/item_17/id = 18
+popup/item_18/text = "TYPE_PROJECTION"
+popup/item_18/id = 19
+popup/item_19/text = "TYPE_COLOR"
+popup/item_19/id = 20
+popup/item_20/text = "TYPE_STRING_NAME"
+popup/item_20/id = 21
+popup/item_21/text = "TYPE_NODE_PATH"
+popup/item_21/id = 22
+popup/item_22/text = "TYPE_RID"
+popup/item_22/id = 23
+popup/item_23/text = "TYPE_OBJECT"
+popup/item_23/id = 24
+popup/item_24/text = "TYPE_CALLABLE"
+popup/item_24/id = 25
+popup/item_25/text = "TYPE_SIGNAL"
+popup/item_25/id = 26
+popup/item_26/text = "TYPE_DICTIONARY"
+popup/item_26/id = 27
+popup/item_27/text = "TYPE_ARRAY"
+popup/item_27/id = 28
+popup/item_28/text = "TYPE_PACKED_BYTE_ARRAY"
+popup/item_28/id = 29
+popup/item_29/text = "TYPE_PACKED_INT32_ARRAY"
+popup/item_29/id = 30
+popup/item_30/text = "TYPE_PACKED_INT64_ARRAY"
+popup/item_30/id = 31
+popup/item_31/text = "TYPE_PACKED_FLOAT32_ARRAY"
+popup/item_31/id = 32
+popup/item_32/text = "TYPE_PACKED_FLOAT64_ARRAY"
+popup/item_32/id = 33
+popup/item_33/text = "TYPE_PACKED_STRING_ARRAY"
+popup/item_33/id = 34
+popup/item_34/text = "TYPE_PACKED_VECTOR2_ARRAY"
+popup/item_34/id = 35
+popup/item_35/text = "TYPE_PACKED_VECTOR3_ARRAY"
+popup/item_35/id = 36
+popup/item_36/text = "TYPE_PACKED_COLOR_ARRAY"
+popup/item_36/id = 37
+popup/item_37/text = "TYPE_PACKED_VECTOR4_ARRAY"
+popup/item_37/id = 38
+popup/item_38/text = "TYPE_BOOL"
+popup/item_38/id = 1
+popup/item_39/text = "TYPE_INT"
+popup/item_39/id = 2
+popup/item_40/text = "TYPE_FLOAT"
+popup/item_40/id = 3
+popup/item_41/text = "TYPE_STRING"
+popup/item_41/id = 4
+popup/item_42/text = "TYPE_VECTOR2"
+popup/item_42/id = 5
+popup/item_43/text = "TYPE_VECTOR2I"
+popup/item_43/id = 6
+popup/item_44/text = "TYPE_RECT2"
+popup/item_44/id = 7
+popup/item_45/text = "TYPE_RECT2I"
+popup/item_45/id = 8
+popup/item_46/text = "TYPE_VECTOR3"
+popup/item_46/id = 9
+popup/item_47/text = "TYPE_VECTOR3I"
+popup/item_47/id = 10
+popup/item_48/text = "TYPE_TRANSFORM2D"
+popup/item_48/id = 11
+popup/item_49/text = "TYPE_VECTOR4"
+popup/item_49/id = 12
+popup/item_50/text = "TYPE_VECTOR4I"
+popup/item_50/id = 13
+popup/item_51/text = "TYPE_PLANE"
+popup/item_51/id = 14
+popup/item_52/text = "TYPE_QUATERNION"
+popup/item_52/id = 15
+popup/item_53/text = "TYPE_AABB"
+popup/item_53/id = 16
+popup/item_54/text = "TYPE_BASIS"
+popup/item_54/id = 17
+popup/item_55/text = "TYPE_TRANSFORM3D"
+popup/item_55/id = 18
+popup/item_56/text = "TYPE_PROJECTION"
+popup/item_56/id = 19
+popup/item_57/text = "TYPE_COLOR"
+popup/item_57/id = 20
+popup/item_58/text = "TYPE_STRING_NAME"
+popup/item_58/id = 21
+popup/item_59/text = "TYPE_NODE_PATH"
+popup/item_59/id = 22
+popup/item_60/text = "TYPE_RID"
+popup/item_60/id = 23
+popup/item_61/text = "TYPE_OBJECT"
+popup/item_61/id = 24
+popup/item_62/text = "TYPE_CALLABLE"
+popup/item_62/id = 25
+popup/item_63/text = "TYPE_SIGNAL"
+popup/item_63/id = 26
+popup/item_64/text = "TYPE_DICTIONARY"
+popup/item_64/id = 27
+popup/item_65/text = "TYPE_ARRAY"
+popup/item_65/id = 28
+popup/item_66/text = "TYPE_PACKED_BYTE_ARRAY"
+popup/item_66/id = 29
+popup/item_67/text = "TYPE_PACKED_INT32_ARRAY"
+popup/item_67/id = 30
+popup/item_68/text = "TYPE_PACKED_INT64_ARRAY"
+popup/item_68/id = 31
+popup/item_69/text = "TYPE_PACKED_FLOAT32_ARRAY"
+popup/item_69/id = 32
+popup/item_70/text = "TYPE_PACKED_FLOAT64_ARRAY"
+popup/item_70/id = 33
+popup/item_71/text = "TYPE_PACKED_STRING_ARRAY"
+popup/item_71/id = 34
+popup/item_72/text = "TYPE_PACKED_VECTOR2_ARRAY"
+popup/item_72/id = 35
+popup/item_73/text = "TYPE_PACKED_VECTOR3_ARRAY"
+popup/item_73/id = 36
+popup/item_74/text = "TYPE_PACKED_COLOR_ARRAY"
+popup/item_74/id = 37
+popup/item_75/text = "TYPE_PACKED_VECTOR4_ARRAY"
+popup/item_75/id = 38
+
+[node name="ObjectDetailsHBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ObjectClassLabel" type="Label" parent="ObjectDetailsHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "(Optional) Class Name:"
+
+[node name="ObjectClassLineEdit" type="LineEdit" parent="ObjectDetailsHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "CharacterBody3D"
+
+[node name="DictionaryDetailsHBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="KeyValueLabel" type="Label" parent="DictionaryDetailsHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "(Optional) Key,Value:"
+
+[node name="KeyValueLineEdit" type="LineEdit" parent="DictionaryDetailsHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "int,EnemyClass"
+
+[node name="ArrayDetailsHBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ArrayTypeLabel" type="Label" parent="ArrayDetailsHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "(Optional) Array Type:"
+
+[node name="ArrayTypeLineEdit" type="LineEdit" parent="ArrayDetailsHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Vector3"
+
+[connection signal="text_changed" from="ObjectDetailsHBoxContainer/ObjectClassLineEdit" to="." method="_on_object_class_line_edit_text_changed"]
+[connection signal="text_changed" from="DictionaryDetailsHBoxContainer/KeyValueLineEdit" to="." method="_on_key_value_line_edit_text_changed"]
+[connection signal="text_changed" from="ArrayDetailsHBoxContainer/ArrayTypeLineEdit" to="." method="_on_array_type_line_edit_text_changed"]

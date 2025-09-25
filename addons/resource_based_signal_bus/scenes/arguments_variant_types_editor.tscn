@@ -1,40 +1,80 @@
-[gd_scene load_steps=3 format=3 uid="uid://brinlab3uvxdl"]
+[gd_scene load_steps=5 format=3 uid="uid://brinlab3uvxdl"]
 
 [ext_resource type="Script" uid="uid://b1ywkh5p1hyiq" path="res://addons/resource_based_signal_bus/scripts/custom_signal_bus_script_creator/arguments_variant_types_editor.gd" id="1_q8a77"]
-[ext_resource type="PackedScene" uid="uid://tj2q2dx2ks1f" path="res://addons/resource_based_signal_bus/scenes/argument_type_control.tscn" id="2_ol8l2"]
+[ext_resource type="PackedScene" uid="uid://tj2q2dx2ks1f" path="res://addons/resource_based_signal_bus/scenes/argument_variant_type_control.tscn" id="2_ol8l2"]
 
-[node name="ArgumentsVariantTypesEditor" type="VBoxContainer"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ol8l2"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+draw_center = false
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6autn"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[node name="ArgumentsVariantTypesEditor" type="VBoxContainer" node_paths=PackedStringArray("controls_parent", "number_of_arguments_spin_box")]
 script = ExtResource("1_q8a77")
+argument_variant_type_control_packed_scene = ExtResource("2_ol8l2")
+controls_parent = NodePath("ScrollContainer/MarginContainer/PanelContainer/VBoxContainer")
+number_of_arguments_spin_box = NodePath("HBoxContainer/NumberOfArgumentsSpinBox")
+
+[node name="ArgumentsRichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 2
+bbcode_enabled = true
+text = "Arguments"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer"]
+[node name="NumberOfArgumentsLabel" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Number of Arguments:"
 
-[node name="SpinBox" type="SpinBox" parent="HBoxContainer"]
+[node name="NumberOfArgumentsSpinBox" type="SpinBox" parent="HBoxContainer"]
 layout_mode = 2
+min_value = 1.0
+max_value = 16.0
+value = 1.0
+rounded = true
 
 [node name="EmptySpace" type="Control" parent="."]
 custom_minimum_size = Vector2(0, 8)
 layout_mode = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
-custom_minimum_size = Vector2(0, 200)
+custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+[node name="MarginContainer" type="PanelContainer" parent="ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_ol8l2")
 
-[node name="ArgumentTypeControl" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_ol8l2")]
+[node name="PanelContainer" type="PanelContainer" parent="ScrollContainer/MarginContainer"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6autn")
 
-[node name="ArgumentTypeControl2" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_ol8l2")]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/MarginContainer/PanelContainer"]
 layout_mode = 2
-
-[node name="ArgumentTypeControl3" parent="ScrollContainer/VBoxContainer" instance=ExtResource("2_ol8l2")]
-layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

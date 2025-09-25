@@ -11,10 +11,6 @@ const GD_EXTENSION: String = ".gd"
 @export var save_path_line_edit: LineEdit
 
 
-# Arguments
-@export var _variant_type_array: Array[Variant.Type]
-
-
 # Filename
 const FILENAME_PREVIEW_TEMPLATE: String = "[i]%s[/i]"
 

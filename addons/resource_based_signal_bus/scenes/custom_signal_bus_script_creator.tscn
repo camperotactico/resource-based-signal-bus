@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://of5af3ng1gf0"]
+[gd_scene load_steps=5 format=3 uid="uid://of5af3ng1gf0"]
 
 [ext_resource type="Script" uid="uid://gf5uvxa472ar" path="res://addons/resource_based_signal_bus/scripts/custom_signal_bus_script_creator/custom_signal_bus_script_creator.gd" id="1_dqea1"]
 [ext_resource type="Texture2D" uid="uid://cl4yg33utlnlg" path="res://addons/resource_based_signal_bus/icons/ResourceBasedSignalBus.svg" id="1_qvtpa"]
 [ext_resource type="PackedScene" uid="uid://brinlab3uvxdl" path="res://addons/resource_based_signal_bus/scenes/arguments_variant_types_editor.tscn" id="2_185c3"]
+[ext_resource type="Script" uid="uid://u3ufpv7r5puc" path="res://addons/resource_based_signal_bus/scripts/custom_signal_bus_script_creator/parameters_validator.gd" id="4_x7jcq"]
 
 [node name="CustomSignalBusScriptCreator" type="Control" node_paths=PackedStringArray("save_path_line_edit")]
 layout_mode = 3
@@ -49,14 +50,6 @@ layout_mode = 2
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
 layout_mode = 2
-
-[node name="ArgumentsRichTextLabel" type="RichTextLabel" parent="VBoxContainer"]
-layout_mode = 2
-bbcode_enabled = true
-text = "Arguments"
-fit_content = true
-scroll_active = false
-horizontal_alignment = 1
 
 [node name="ArgumentsVariantTypesEditor" parent="VBoxContainer" instance=ExtResource("2_185c3")]
 layout_mode = 2
@@ -120,6 +113,9 @@ bbcode_enabled = true
 text = "[color=red]Save Path cannot be empty[/color]"
 fit_content = true
 scroll_active = false
+
+[node name="ParametersValidator" type="Node" parent="."]
+script = ExtResource("4_x7jcq")
 
 [connection signal="error_encountered" from="." to="VBoxContainer/ErrorMessageDisplay" method="set_text"]
 [connection signal="preview_filename_changed" from="." to="VBoxContainer/FilenamePreviewHBoxContainer/FilenamePreviewRichTextLabel" method="set_text"]
