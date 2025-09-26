@@ -53,6 +53,22 @@ fit_content = true
 scroll_active = false
 horizontal_alignment = 1
 
+[node name="SignalSignaturePreviewHBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="SignalSignaturePreviewTextLabel" type="Label" parent="VBoxContainer/SignalSignaturePreviewHBoxContainer"]
+layout_mode = 2
+text = "Signal Signature:"
+
+[node name="SignalSignaturePreviewRichTextLabel" type="RichTextLabel" parent="VBoxContainer/SignalSignaturePreviewHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[i]signal _signal( arg0: bool )[/i]"
+scroll_following = true
+autowrap_mode = 0
+horizontal_alignment = 2
+
 [node name="ClassNamePreviewHBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
@@ -64,7 +80,9 @@ text = "Output Class Name:"
 layout_mode = 2
 size_flags_horizontal = 3
 bbcode_enabled = true
-text = "[i]FloatIntDictionaryOfStringColorSignalBus[/i]"
+text = "[i]BoolSignalBus[/i]"
+scroll_following = true
+autowrap_mode = 0
 horizontal_alignment = 2
 
 [node name="FilenamePreviewHBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
@@ -78,7 +96,9 @@ text = "Output File:"
 layout_mode = 2
 size_flags_horizontal = 3
 bbcode_enabled = true
-text = "[i]res://scripts/custom_signal_buses/my_custom_class_signal_bus.gd[/i]"
+text = "[i]res://scripts/custom_signal_buses/bool_signal_bus.gd[/i]"
+scroll_following = true
+autowrap_mode = 0
 horizontal_alignment = 2
 
 [node name="EmptySpace3" type="Control" parent="VBoxContainer"]
@@ -107,9 +127,12 @@ script = ExtResource("5_nbh7k")
 [connection signal="file_system_scan_requested" from="." to="FileSystemScanner" method="_on_custom_signal_bus_script_creator_file_system_scan_requested"]
 [connection signal="initial_save_path_requested" from="." to="VBoxContainer/SavePathEditor" method="_on_custom_signal_bus_script_creator_initial_save_path_requested"]
 [connection signal="save_path_changed" from="VBoxContainer/SavePathEditor" to="ParametersValidator" method="_on_save_path_editor_save_path_changed"]
+[connection signal="arguments_changed" from="VBoxContainer/ArgumentsVariantTypesEditor" to="ParametersValidator" method="_on_arguments_variant_types_editor_arguments_changed"]
 [connection signal="pressed" from="VBoxContainer/CreateScriptButton" to="." method="_on_create_script_button_pressed"]
 [connection signal="error_encountered" from="ParametersValidator" to="VBoxContainer/ErrorMessageDisplay" method="set_text"]
+[connection signal="preview_class_name_changed" from="ParametersValidator" to="VBoxContainer/ClassNamePreviewHBoxContainer/ClassNamePreviewRichTextLabel" method="set_text"]
 [connection signal="preview_filename_changed" from="ParametersValidator" to="VBoxContainer/FilenamePreviewHBoxContainer/FilenamePreviewRichTextLabel" method="set_text"]
+[connection signal="preview_signal_signature_changed" from="ParametersValidator" to="VBoxContainer/SignalSignaturePreviewHBoxContainer/SignalSignaturePreviewRichTextLabel" method="set_text"]
 [connection signal="script_creation_disabled" from="ParametersValidator" to="VBoxContainer/CreateScriptButton" method="set_disabled"]
 [connection signal="script_creation_disabled" from="ParametersValidator" to="VBoxContainer/ErrorMessageDisplay" method="set_visible"]
 [connection signal="file_system_changed" from="FileSystemScanner" to="ParametersValidator" method="_on_file_system_scanner_file_system_changed"]
