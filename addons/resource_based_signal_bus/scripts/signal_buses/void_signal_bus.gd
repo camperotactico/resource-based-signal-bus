@@ -1,6 +1,11 @@
 @tool
 extends SignalBus
 
+## A resource type that extends [code]SignalBus[/code].
+## It wraps the following signal:
+## [codeblock]
+## signal _signal()
+## [/codeblock]
 class_name VoidSignalBus
 
 signal _signal()

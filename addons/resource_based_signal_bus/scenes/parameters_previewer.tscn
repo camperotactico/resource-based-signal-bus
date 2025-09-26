@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=3 uid="uid://r24teberncfn"]
+
+[ext_resource type="Script" uid="uid://bv2s5peh322bh" path="res://addons/resource_based_signal_bus/scripts/custom_signal_bus_script_creator/parameters_previewer.gd" id="1_15udx"]
+
+[node name="ParametersPreviewer" type="VBoxContainer" node_paths=PackedStringArray("signal_signature_preview_rich_text_label", "class_name_preview_rich_text_label", "filepath_preview_rich_text_label")]
+script = ExtResource("1_15udx")
+signal_signature_preview_rich_text_label = NodePath("SignalSignaturePreviewHBoxContainer/SignalSignaturePreviewRichTextLabel")
+class_name_preview_rich_text_label = NodePath("ClassNamePreviewHBoxContainer/ClassNamePreviewRichTextLabel")
+filepath_preview_rich_text_label = NodePath("FilepathPreviewHBoxContainer/FilepathPreviewRichTextLabel")
+
+[node name="PreviewRichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 2
+bbcode_enabled = true
+text = "Custom SignalBus Preview"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="SignalSignaturePreviewHBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="SignalSignaturePreviewTextLabel" type="Label" parent="SignalSignaturePreviewHBoxContainer"]
+layout_mode = 2
+text = "Signal Signature:"
+
+[node name="SignalSignaturePreviewRichTextLabel" type="RichTextLabel" parent="SignalSignaturePreviewHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[i]signal _signal( arg0: bool )[/i]"
+scroll_following = true
+autowrap_mode = 0
+horizontal_alignment = 2
+
+[node name="ClassNamePreviewHBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ClassNamePreviewTextLabel" type="Label" parent="ClassNamePreviewHBoxContainer"]
+layout_mode = 2
+text = "Output Class Name:"
+
+[node name="ClassNamePreviewRichTextLabel" type="RichTextLabel" parent="ClassNamePreviewHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[i]BoolSignalBus[/i]"
+scroll_following = true
+autowrap_mode = 0
+horizontal_alignment = 2
+
+[node name="FilepathPreviewHBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="FilepathPreviewTextLabel" type="Label" parent="FilepathPreviewHBoxContainer"]
+layout_mode = 2
+text = "Output File:"
+
+[node name="FilepathPreviewRichTextLabel" type="RichTextLabel" parent="FilepathPreviewHBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[i]res://scripts/custom_signal_buses/bool_signal_bus.gd[/i]"
+scroll_following = true
+autowrap_mode = 0
+horizontal_alignment = 2

@@ -5,6 +5,11 @@
 @tool
 extends _BASE_
 
+## A resource type that extends [code]SignalBus[/code].
+## It wraps the following signal:
+## [codeblock]
+## signal _signal(arg0: ARGUMENT_TYPE, arg1: ARGUMENT_TYPE)
+## [/codeblock]
 class_name _CLASS_
 
 # Replace ARGUMENT_TYPE:

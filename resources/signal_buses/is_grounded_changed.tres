@@ -1,7 +1,0 @@
-[gd_resource type="Resource" script_class="BoolSignalBus" load_steps=2 format=3 uid="uid://jyfc4uvrtmvn"]
-
-[ext_resource type="Script" uid="uid://vqhibo04qv56" path="res://addons/resource_based_signal_bus/scripts/signal_buses/bool_signal_bus.gd" id="1_ud6an"]
-
-[resource]
-script = ExtResource("1_ud6an")
-metadata/_custom_type_script = "uid://vqhibo04qv56"

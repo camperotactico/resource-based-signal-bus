@@ -1,8 +1,8 @@
 ## Base class for [code]SignalBus[/code] resources.
 ##
 ## Extend this class to create a custom [code]SignalBus[/code] type.
-## [color=yellow] This asset includes a script template to make this process easier. [/color]
-## For example, an implementation for a custom [Dictionary]:
+## [color=yellow] This asset comes with a CustomSignalBusCreator dock and a script template to make this process easier. [/color]
+## An implementation for a custom [Dictionary] would look like this:
 ## [codeblock]
 ##@tool
 ##extends SignalBus
