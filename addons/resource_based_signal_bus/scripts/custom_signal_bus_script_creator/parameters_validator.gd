@@ -13,7 +13,9 @@ const CLASS_NAME_SUFFIX: String = "SignalBus"
 const ARRAY_OPEN_BRACKET_STRING: String = "Array["
 const DICTIONARY_OPEN_BRACKET_STRING: String = "Dictionary["
 const CLOSING_BRACKET_STRING: String = "]"
-const IS_EMPTY_STRING: String = " "
+const COMMA: String = ","
+const IS_EMPTY_STRING: String = "_EMPTY_"
+const IS_MISSING_ARGUMENTS_STRING: String = "_MISSING_ARGUMENTS_"
 const CHARACTERS_NOT_ALLOWED_IN_ARGUMENTS: String = "!@#$%^&*()-+=[]{}:;\"'`~,.<>/?\\"
 
 
@@ -123,7 +125,10 @@ func _are_parameters_valid() -> bool:
 	if IS_EMPTY_STRING in custom_class_name:
 		_display_error("An generic Array or Dictionary was delcared using []. Remove the brackets if that is intended. ")
 		return false
-	
+	if IS_MISSING_ARGUMENTS_STRING in custom_class_name:
+		_display_error("A Dictionary is missing an Key or Value.")
+		return false
+		
 	for character_not_allowed_in_argument in CHARACTERS_NOT_ALLOWED_IN_ARGUMENTS:
 		if character_not_allowed_in_argument in custom_class_name:
 			_display_error("The Output Class Name cannot contain the character '%s'" % _escape_bb_code(character_not_allowed_in_argument))
@@ -149,17 +154,23 @@ func _parse_array_class_name(details: String ) -> String:
 	return "ArrayOf%s" % type
 
 func _parse_dictionary_class_name(details: String) -> String:
-	var key_value_array: PackedStringArray = details.split(",",true,1)
+	var input: String = details.strip_edges()
+	if input.is_empty():
+		return "DictionaryOf%s" % IS_EMPTY_STRING
+	if !input.contains(COMMA):
+		return "DictionaryOf%s" % IS_MISSING_ARGUMENTS_STRING
+		
+	var key_value_array: PackedStringArray = input.split(COMMA,true,1)
 	var key_value: String = ""
 	for item in key_value_array:
-		if item.begins_with(ARRAY_OPEN_BRACKET_STRING) and details.ends_with(CLOSING_BRACKET_STRING):
+		if item.is_empty():
+			return "DictionaryOf%s" % IS_MISSING_ARGUMENTS_STRING
+		if item.begins_with(ARRAY_OPEN_BRACKET_STRING) and item.ends_with(CLOSING_BRACKET_STRING):
 			key_value += _parse_array_class_name(extract_details_from(item,ARRAY_OPEN_BRACKET_STRING))
-		elif item.begins_with(DICTIONARY_OPEN_BRACKET_STRING) and details.ends_with(CLOSING_BRACKET_STRING):
+		elif item.begins_with(DICTIONARY_OPEN_BRACKET_STRING) and item.ends_with(CLOSING_BRACKET_STRING):
 			key_value += _parse_dictionary_class_name(extract_details_from(item,DICTIONARY_OPEN_BRACKET_STRING))
 		else:
 			key_value += item.strip_edges().to_pascal_case()
-	if key_value.is_empty():
-		key_value = IS_EMPTY_STRING
 	return "DictionaryOf%s" % key_value
 
 func extract_details_from(string: String, prefix: String) -> String:
