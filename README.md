@@ -1,5 +1,3 @@
-> ⚠️ This asset and document are still under construction.
-
 # Resource Based Signal Bus
 
 [![Made with Godot](https://img.shields.io/badge/Made%20with-Godot-478CBF?style=flat&logo=godot%20engine&logoColor=white)](https://godotengine.org)
@@ -45,11 +43,11 @@ Instead of connecting/emitting signals through a singleton, a node exports a var
 
 ### Creating and using _<img src="./icons/ResourceBasedSignalBus.svg" width="16" height="16"> SignalBus_ resources.
 
-1 - Right click on the _FileSystem_ panel, then select `Create New -> Resource`. A pop-up will open. In there, search for `SignalBus` and choose a type.
+1. Right click on the _FileSystem_ panel, then select `Create New -> Resource`. A pop-up will open. In there, search for `SignalBus` and choose a type.
 
-2- To emit a signal through its bus, export a variable that matches the _<img src="./icons/ResourceBasedSignalBus.svg" width="16" height="16"> SignalBus_ type in a script. In the inspector panel, choose the resource to use. Finally, call the `emit(...)` method providing the required arguments.
+2. To emit a signal through its bus, export a variable that matches the _<img src="./icons/ResourceBasedSignalBus.svg" width="16" height="16"> SignalBus_ type in a script. In the inspector panel, choose the resource to use. Finally, call the `emit(...)` method providing the required arguments.
 
-3- To receive a signal through its bus, export a variable that matches the _<img src="./icons/ResourceBasedSignalBus.svg" width="16" height="16"> SignalBus_ type in a script. In the inspector panel, choose the signal bus to use. Then override the `_enter_tree()` and `_exit_tree()` methods and use them to connect and disconnect from to the signal bus using `add_connection(...)` and `remove_connection(...)` and provide them with the callback to use.
+3. To receive a signal through its bus, export a variable that matches the _<img src="./icons/ResourceBasedSignalBus.svg" width="16" height="16"> SignalBus_ type in a script. In the inspector panel, choose the signal bus to use. Then override the `_enter_tree()` and `_exit_tree()` methods and use them to connect and disconnect from to the signal bus using `add_connection(...)` and `remove_connection(...)` and provide them with the callback to use.
 
 ![A screenshot of the Godot editor showing the code to emit and receive signals.](./screenshots/signal_bus_usage.png)
 
@@ -57,39 +55,57 @@ Instead of connecting/emitting signals through a singleton, a node exports a var
 
 ### Using the _<img src="./icons/SignalBusListener.svg" width="16" height="16"> SignalBusListener_ node.
 
-1- Right click on the _Scene_ panel, then select `Add Child Node...`. A pop-up will open. In there, search for _<img src="./icons/SignalBusListener.svg" width="16" height="16"> SignalBusListener_ and press _Create_.
+1. Right click on the _Scene_ panel, then select `Add Child Node...`. A pop-up will open. In there, search for _<img src="./icons/SignalBusListener.svg" width="16" height="16"> SignalBusListener_ and press _Create_.
 
-2- In the inspector panel, select a _<img src="./icons/ResourceBasedSignalBus.svg" width="16" height="16"> SignalBus_ to listen to and a target node to send a response. The arguments from the received signal can be forwarded, ignored or extended by using the different available controls. Once the configuration for the arguments is ready, pick a compatible method from the _Callable String Name_ option button.
+2. In the inspector panel, select a _<img src="./icons/ResourceBasedSignalBus.svg" width="16" height="16"> SignalBus_ to listen to and a target node to send a response. The arguments from the received signal can be forwarded, ignored or extended by using the different available controls. Once the configuration for the arguments is ready, pick a compatible method from the _Callable String Name_ option button.
 
-![A screenshot of the Godot editor showing the listener node responding to a signal and including extra arguments.](./screenshots/signal_bus_listener.png)
+   ![A screenshot of the Godot editor showing the listener node responding to a signal and including extra arguments.](./screenshots/signal_bus_listener.png)
 
-> A screenshot of the Godot editor showing the listener node responding to a signal and including extra arguments.
+   > A screenshot of the Godot editor showing the listener node responding to a signal and including extra arguments.
 
-### Crating Custom SignalBus Scripts From The Editor.
+### Creating Custom SignalBus Scripts From The Editor.
+
+The easiest way to create a new script for a custom _<img src="./icons/ResourceBasedSignalBus.svg" width="16" height="16"> SignalBus_ type is to use the tincluded editor tool.
 
 ![A screenshot of the _CreateCustomSignalBusScriptEditor_ tab of the Godot editor. The tool is filled with parameters to create a custom signal bus type that wraps a `String,Array[Vector3]` signal.](./screenshots/create_custom_signal_bus_script_editor.png)
 
 > A screenshot of the _CreateCustomSignalBusScriptEditor_ tab of the Godot editor. The tool is filled with parameters to create a custom signal bus type that wraps a `String,Array[Vector3]` signal.
 
+1. In the Godot editor, click on the _CustomSignalBusScriptEditor_ tab on the right dock at the left side of the screen, next to the _Scene_ and _Import_ tabs.
+
+2. Set the directory where the new script will be created to.
+
+3. Set the number of arguments the contained signal will use.
+
+4. Change the type of the arguments.
+
+   > `TYPE_OBJECT`, `TYPE_ARRAY` and `TYPE_DICTIONARY` arguments will reveal an optional field where a specific type can be entered. In the above picture, the second argument references a `Vector3` typed `Array`. Arrays and dictionaries can feature nested arrays and dictionaries as well.
+   >
+   > As an example, to set a `Dictionary[int,Array[CharacterBody3D]]` typed argument, the variant type needs to be set to `TYPE_DICTIONARY` and the optional field to `int,Array[CharacterBody3D]`
+
+5. Click the _<img src="./icons/ResourceBasedSignalBus.svg" width="16" height="16"> Create Script_ button.
+
+6. To create and use the new _<img src="./icons/ResourceBasedSignalBus.svg" width="16" height="16"> SignalBus_ type, simply follow [the steps above](#creating-and-using--signalbus-resources).
+
 ### Creating Custom SignalBus Scripts Via Code.
 
-1 - Right click on the _FileSystem_ panel, then select `Create New -> Script`. A pop-up will open. Fill in the different fields so the new class inherits `SignalBus` and uses the custom template included in the asset. Click _Create_.
+1. Right click on the _FileSystem_ panel, then select `Create New -> Script`. A pop-up will open. Fill in the different fields so the new class inherits `SignalBus` and uses the custom template included in the asset. Click _Create_.
 
-![A screenshot of the script creation pop-up. In this case, I am going to create a signal that takes two arguments: an int and a Dictionary[String,Color]](./screenshots/create_script_pop_up.png)
+   ![A screenshot of the script creation pop-up. In this case, I am going to create a signal that takes two arguments: an int and a Dictionary[String,Color]](./screenshots/create_script_pop_up.png)
 
-> A screenshot of the script creation pop-up. In this case, I am going to create a signal that takes two arguments: an `int` and a `Dictionary[String,Color]` .
+   > A screenshot of the script creation pop-up. In this case, I am going to create a signal that takes two arguments: an `int` and a `Dictionary[String,Color]` .
 
-2- Once the new script is created, the editor will complain about several errors. This is because some placeholders in the class need to be changed to match the signature of our custom signal.
+2. Once the new script is created, the editor will complain about several errors. This is because some placeholders in the class need to be changed to match the signature of our custom signal.
 
-![A screenshot of the Godot editor showing a bunch of compiler errors when a custom `SignalBus` class is created.](./screenshots/custom_signal_bus_editor_error.png)
+   ![A screenshot of the Godot editor showing a bunch of compiler errors when a custom `SignalBus` class is created.](./screenshots/custom_signal_bus_editor_error.png)
 
-> A screenshot of the Godot editor showing a bunch of compiler errors when a custom `SignalBus` class is created.
+   > A screenshot of the Godot editor showing a bunch of compiler errors when a custom `SignalBus` class is created.
 
-![A screenshot of the Godot editor showing the custom `SignalBus` class after the placeholders have been replaced with the desired types.](./screenshots/custom_signal_bus_editor_no_errors.png)
+   ![A screenshot of the Godot editor showing the custom `SignalBus` class after the placeholders have been replaced with the desired types.](./screenshots/custom_signal_bus_editor_no_errors.png)
 
-> A screenshot of the Godot editor showing the custom `SignalBus` class after the placeholders have been replaced with the desired types.
+   > A screenshot of the Godot editor showing the custom `SignalBus` class after the placeholders have been replaced with the desired types.
 
-3- Now, to create and use the new _<img src="./icons/ResourceBasedSignalBus.svg" width="16" height="16"> SignalBus_ type, simply follow [the steps above](#creating-and-using--signalbus-resources).
+3. To create and use the new _<img src="./icons/ResourceBasedSignalBus.svg" width="16" height="16"> SignalBus_ type, simply follow [the steps above.](#creating-and-using--signalbus-resources)
 
 ## 🐛 Limitations, known issues, bugs
 
